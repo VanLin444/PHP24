@@ -104,6 +104,7 @@ echo '<br>';
 $void = null;
 $void1;
 $var1 = 23;
+echo "Было: $var1 Стало: ";
 unset($var1);
 echo $var1;
 echo is_null($var1);
