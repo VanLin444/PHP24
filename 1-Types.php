@@ -14,15 +14,15 @@ $null = null; // Ноль - специальный тип данных, кото
 */
 class Hokage
 {
-    function hokageName() {
-        echo "Наруто Узумаки";
+    function hokageName($name) {
+        echo "$name";
     }
 }
 
-// Объект - это экземпдяр класса
+// Объект - это экземпляр класса
 // Создаём объект
 $hokname = new Hokage();
-$hokname->hokageName();
+$hokname->hokageName("Наруто Узумаки");
 
 /*
 Resource - это специальная переменная, содержащая ссылку на внешний ресурс.
