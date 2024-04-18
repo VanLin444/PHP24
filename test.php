@@ -1,15 +1,8 @@
 <?php
+$until_new_year= 365 - date('z'); //date("z") от 0 - 365 
+echo "До нового года : $until_new_year дней";
 
-$family = "Uzumaki";
+echo "<br>";
 
-function getFam(){
-    global $family;
-    $family .= "Namikadze";
-    echo $family;
-}
-getFam();
-
-echo '<br>';
-
-echo $family;
+echo 13 === "13";
 ?>
