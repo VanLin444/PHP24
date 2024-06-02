@@ -12,12 +12,12 @@ if ($name == "Sakura"){
     echo "$name top waifu! <br>";
 }
 
-$famyliMember = "Itachi";
-if ($famyliMember == "Fugaku"){
+$familyMember = "Itachi";
+if ($familyMember == "Fugaku"){
     echo "It's his father <br>";
-} elseif ($famyliMember == "Mikoto"){
+} elseif ($familyMember == "Mikoto"){
     echo "It's hit mother <br>";
-} elseif ($famyliMember == "Itachi"){
+} elseif ($familyMember == "Itachi"){
     echo "It's his BROTHER...<br>";
 } else {
     echo "I don't know who is it...";
@@ -27,6 +27,7 @@ if ($famyliMember == "Fugaku"){
 $skill = "Rasengan";
 if ($skill != "Chidori"):
     echo "HIGH Skill <br>";
+    echo "HIGH Skill <br>";
 else:
     echo "LOW Skill <br>";
 endif;
@@ -35,7 +36,7 @@ endif;
 // Он единственный в своем роде оператор, требующий три операнда
 
 $tails = 9;
-echo $tails > 1 ? "Kurama <br>" : "I don't know who is it...<br>";
+echo ($tails > 8 and $tails < 10) ? "Kurama <br>" : "I don't know who is it...<br>";
 
 // Оператор switch похож на ряд операторов IF с одинаковым условием. 
 $hokageName = "Minato Namikaze";
@@ -45,7 +46,7 @@ switch ($hokageName){
         echo "First Hokage";
         break;
     case "Tobirama Senju":
-        echo "Secodt Hokage";
+        echo "Second Hokage";
         break;
     case "Hiruzen Sarutobi":
         echo "Third Hokage";
@@ -57,4 +58,17 @@ switch ($hokageName){
     default:
     echo "Unknown Hokage";
 }
+
+echo "<br>";
+
+// В отличие от switch, в match(выражение) используется строгое сравнение (===), а не слабое (==).
+$family = "Uzumaki";
+$name = match ($family){
+    "Uchiha" => "Sasuke",
+    "Senju" => "Tsunade",
+    "Uzumaki" => "Karin",
+    "Uzumaki" => "Naruto",
+    default => "Unknown"
+};
+echo "Uzumaki number one - " . $name;
 ?>

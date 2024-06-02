@@ -21,6 +21,8 @@ for ($word = 0; $word < 5;$word++){
 
 echo "<br>";
 
+// foreach - языковая конструкция для простого перебора массива. 
+// Она работает только с массивами и объектами.
 echo "Team Seven :<br>";
 $teamSeven = ["Kakashi", "Naruto", "Sasuke", "Sakura"];
 foreach($teamSeven as $ninja){
@@ -35,35 +37,4 @@ foreach ($hokage as $number => $name){
     echo "$number hokage is $name <br>";
 }
 
-echo "<br>";
-
-$villageName = "Konohagakure";
-switch ($villageName){
-    case "Sunagakure":
-        echo "Suna";
-        break;
-    case "Kirigakure":
-        echo "Kiri";
-        break;
-    case "Iwagakure":
-        echo "Iwa";
-        break;
-    case "Konohagakure":
-        echo "Konoha";
-        break;
-    default:
-    echo "Anon village";
-}
-
-echo "<br>";
-
-// В отличие от switch, в match используется строгое сравнение (===), а не слабое (==).
-$family = "Uzumaki";
-$name = match ($family){
-    "Uchiha" => "Sasuke",
-    "Senju" => "Tsunade",
-    "Uzumaki" => "Karin",
-    "Uzumaki" => "Naruto"
-};
-echo "Uzumaki number one - " . $name;
 ?>
