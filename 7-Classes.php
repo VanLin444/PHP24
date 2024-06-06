@@ -7,7 +7,7 @@
 
 <?php
 
-// $this - значение вызывающего объекта. То есть указатель именно на этот объект.
+// Псевдо переменная $this - значение вызывающего объекта. То есть указатель именно на этот объект.
 
 class Ninja {
     public $name;
@@ -50,6 +50,8 @@ class BodyTemp{
     }
 }
 
+// Класс умеет наследовать константы, методы и свойства другого класса через ключевое слово extends в объявлении класса. 
+// Невозможно наследовать больше одного класса, одному классу разрешено наследовать только один базовый класс.
 class MaleTemp extends BodyTemp{
     // Переопределяем свойство temp 
     public $temp = 37.1; 
@@ -60,62 +62,59 @@ $testTemp->getTemp();
 
 echo "<br>";
 
-//Конструкторы - это обычные методы, которые вызываются при инстанциировании соответствующих объектов.
-//Деструктор будет вызван при освобождении всех ссылок на определённый объект или при завершении скрипта.
+// Конструктор - это специальный метод класса, который вызывается автоматически при создании нового объекта этого класса.
+// Он используются для инициализации объекта и установки начальных значений его свойств.
+// Деструктор - это специальный метод класса, вызывается автоматически при удалении ебъекта из памяти или при завершении скрипта.
+// Он позволяет освободить ресурсы, которые были выделены объекту во время его жизни.
 class Luntik{
     function __construct(){
-        echo "<br> Я родился :)";
+        echo "Я родился :) <br> ";
     }
 
     function __destruct(){
-        echo "<br> Я помер :(";
+        echo "Я умер :( <br> ";
     }
 }
 
 $stateLuntik = new Luntik();
 unset($stateLuntik); // Удаляем объект stateLuntik
-echo "<br> Программа ещё что-то делает...";
-
-echo "<br>";
 
 
-Class MyInfo{
+// Области видимости
+// Public - это модификатор доступа, который позволяет обращатьсяк свойствам и методам класса из любого места программы.
+// Protected - это модификатор доступа, который позволяет обращаться к свойствам и методам класса только из самого класса или его наследников.
+// Private - это модификатордоступа, который позволяет обращаться к свойствам и методам только из самого класса, но не из его наследников.
+
+Class User{
     public $name = "Ivan";
     public $age = 23;
 
     protected $weight = 110;
     protected $growth = 194;
 
-    private $secondName = "Antipov";
-    private $telephoneNumber = "89083384004";
+    private $secondName = "Suvorov";
 
     public function getInfo(){
-        echo $this->name;
-        echo $this->weight;
-        echo $this->secondName;
+        print("Hello I'm $this->name $this->secondName and I'm $this->age years old! <br>");
     }
 
     protected function getProtected() {
-        echo "<br>Функция protected";
+        echo "Функция protected";
     }
 
     private function getPrivate(){
-        echo "<br>Функция private";
+        echo "Функция private";
     }
-
-
-
 }
 
 // Мы можем переопределить общедоступные и защищённые свойства, но не закрытые
-
-class MyInfo2 extends MyInfo{ 
-    protected $weight = 107;
-
     // Мы можем вызвать функцию с областью видимости protected т.к
     // Класс MyInfo2 является дочерним классом MyInfo
-    // Но мы не можем вызвать функцию области видимости private т.е
-    // Она является часть родительского класса MyInfo и не наследуется
+    // Но мы не можем вызвать функцию области видимости private т.к
+    // Она является часть родительского класса MyInfo и не наследуется!
+class MyInfo extends User{ 
+    protected $weight = 107;
+
     public function callFunction(){
         $this->getProtected();
     }
@@ -124,107 +123,53 @@ class MyInfo2 extends MyInfo{
 
 // Напрямую мы не можем вызвать функции с областью видимости private и protected
 // Но мы можем это сделать через фуекцию с областью видимости public
-$meInfo = new MyInfo2();
+$meInfo = new MyInfo();
 $meInfo->getInfo();
 $meInfo->callFunction();
 
 echo "<br>";
 
-// Абстрактный класс
+// Абстрактный класс - это класс, который содержит абстрактные методы(методы без реализации), которые должны быть реализованы в дочерних классах.
+// Этот класс не может быть создан напрямую, он служит в качестве шаблона для других классов, которые должны наследовать его и реализовывать все его абстрактные методы.
+// Так же абстрактный класс может содержать как обычные методы, так и переменные.
+// Абстрактные классы помогают организовать код и обеспечивают структуру для классов-наследников.
 abstract class Tree {
 
     abstract protected function Grow();
-    abstract protected function Swing();
+    public function say(){echo "I'm GROOOT <br>";} //В абстрактном классе так же могут быть обычные методы с реализацией
+    protected $growth_rate;
 }
 
+// Дуб
 class Oak extends Tree{
+    public $growth_rate = 20;
     public function Grow(){
-        echo "Я росту";
-    }
-
-    public function Swing(){
-        echo "Я качаюсь";
+        print("Я " . __CLASS__ . " и я расту со скоростью $this->growth_rate см/год <br>");
     }
 }
 
-$treeSkills = new Oak();
-$treeSkills->Grow();
-$treeSkills->Swing();
-
-echo "<br>";
-
-// Интерфейс
-interface TriangelArea{
-    public function setParametrs($a,$h);
-    public function getParametrs();
-    public function calculateArea();
-}
-
-class T_AreaMethodOne implements TriangelArea{
-    
-    public $base;
-    public $height;
-    public $area;
-
-    public function setParametrs($a,$h)
-    {
-        $this->base=$a;
-        $this->height=$h;
-    }
-
-    public function calculateArea()
-    {
-        $this->area = ($this->base * $this->height) * 0.5;
-    }
-
-    public function getParametrs()
-    {
-        echo $this->area;
+// Сосна
+class Pine extends Tree{
+    public $growth_rate = 40;
+    public function Grow(){
+        print("Я " . __CLASS__ . " и я расту со скоростью $this->growth_rate см/год <br>");
     }
 }
 
-$Test = new T_AreaMethodOne();
-$Test->setParametrs(2.2,4);
-$Test->calculateArea();
-$Test->getParametrs();
+echo "Абстрактный класс: <br>";
+$new_tree = new Oak();
+$new_tree->Grow();
+$new_tree->say();
 
-echo "<br>";
+$new_tree = new Pine();
+$new_tree->Grow();
+$new_tree->say();
 
-// Трейты
-trait playerInfo{
-    public function HP_Recovery(){echo $this->HP;}
-    public function MP_Recovery(){echo $this->MP;}
-    public function SP_Recovery(){echo $this->SP;}
-}
-
-class Humans{
-    use playerInfo;
-    public $HP=100;
-    public $MP=100;
-    public $SP=100;
-    
-}
-
-class Orcs{
-    use playerInfo;
-    public $HP=125;
-    public $MP=50;
-    public $SP=125;
-    
-}
-
-class Elfs{
-    use playerInfo;
-    public $HP=75;
-    public $MP=150;
-    public $SP=75;
-    
-}
- 
-$player = new Elfs();
-$player->HP_Recovery();
-$player->MP_Recovery();
-$player->SP_Recovery();
+// 1. Может содержать как абстрактные так и обычные методы.
+// 2. Класс может реализовать только один абстрактный класс.
+// 3. Может содержать переменные и константы.
+// 4. Может иметь защищённые методы и свойства.
+// Абстрактный класс может реализовать чать ИНТЕРФЕЙСА, а класс его расширяющий(дочерний) должен реализовать всё остальное.
 
 echo "<br>";
 
