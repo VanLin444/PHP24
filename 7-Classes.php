@@ -6,38 +6,12 @@
 <body>
 
 <?php
-
+// new - это деректива для создания экземпляра класса.
+// Свойства и методы класса живут в отдельных "пространствах имён"!
 // Псевдо переменная $this - значение вызывающего объекта. То есть указатель именно на этот объект.
-
-class Ninja {
-    public $name;
-    public $rank;
-    public $skills;
-
-    public function setInfo($nameNinja,$rankNinja,$skillsNinja){
-        $this->name = $nameNinja;
-        $this->rank = $rankNinja;
-        $this->skills = $skillsNinja;
-    }
-
-    public function getInfo(){
-        echo "$this->name <br>";
-        echo "$this->rank <br>";
-        foreach ($this->skills as $skill){
-            echo "$skill / ";
-        }
-    }
-
-}
-
-$nameNinja = "Naruto Uzumaki";
-$rankNinja = "S";
-$skillsNinja = ["Rasengan", "Kagebunshin", "Sexy Jutsu"];
-$ninkon = new Ninja();
-$ninkon->setInfo($nameNinja,$rankNinja,$skillsNinja);
-$ninkon->getInfo();
-
-echo "<br>";
+// this используется для обращения к нестатическим свойствам и методам внутри объекта класса.
+// $this – это ссылка на сам объект, а self – на текущий класс.
+// -> это оператор объекта. Даёт доступ к нестатическим свойствам.
 
 class BodyTemp{
     public $temp = 36.6;
@@ -62,6 +36,43 @@ $testTemp->getTemp();
 
 echo "<br>";
 
+// :: это оператор разрешения области видимости. 
+// Этот оператор разрешает обращаться к константе, статическому свойству и статическому методу класса или одному из его родителей.
+// К свойствам и методам внутри самого класса обращаются через ключевые слова self, parent и static.
+// self - ключевое слово, которое используется для обращения к текущему свойству или методу внутри класса.
+// self используется для обращения к статическим свойствам и методам внутри класса.
+// parent - ключевое слово, которое используется для обращения к родительскому классу и получения доступа к свойствам и методам родительского класса.
+// static - ключевое слово, которое используется для объявления статических свойств и методов в классе.
+// Статические свойства и методы принадлежат классу в целом, а не конкретному экземпляру класса(объекту).
+// Это значит, что они могут быть вызваны и доступны из любой части программы.
+class Ninja {
+    public $name;
+    public $rank;
+    static $village = "Konoha";
+
+    function setInf($name, $rank){
+        $this->name = $name;
+        $this->rank = $rank;
+        self::getInf($name, $rank);
+    }
+
+    static function getInf($name, $rank){
+        print("|name :$name  |rank : $rank|village :". self::$village . "<br>");
+    }
+}
+
+class Genin extends Ninja {
+    function callParentMethod(){
+        parent::setInf("Shikamaru", "Chunin");
+    }
+}
+$konNin = new Ninja;
+$konNin->setInf("Naruto", "Genin");
+
+$konGen = new Genin;
+$konGen -> callParentMethod();
+
+
 // Конструктор - это специальный метод класса, который вызывается автоматически при создании нового объекта этого класса.
 // Он используются для инициализации объекта и установки начальных значений его свойств.
 // Деструктор - это специальный метод класса, вызывается автоматически при удалении ебъекта из памяти или при завершении скрипта.
@@ -80,7 +91,7 @@ $stateLuntik = new Luntik();
 unset($stateLuntik); // Удаляем объект stateLuntik
 
 
-// Области видимости
+// Области видимости - Модификаторы доступа
 // Public - это модификатор доступа, который позволяет обращатьсяк свойствам и методам класса из любого места программы.
 // Protected - это модификатор доступа, который позволяет обращаться к свойствам и методам класса только из самого класса или его наследников.
 // Private - это модификатордоступа, который позволяет обращаться к свойствам и методам только из самого класса, но не из его наследников.
@@ -93,7 +104,7 @@ p| |_
 u| pr|_
 b|   ot|_
 l|    ect|_
-i|        ed|_private
+i|       ed|_private
 c|___________|
 */
 Class User{
@@ -180,11 +191,12 @@ $new_tree->say();
 // 2. Класс может реализовать только один абстрактный класс.
 // 3. Может содержать переменные и константы.
 // 4. Может иметь защищённые методы и свойства.
-// Абстрактный класс может реализовать чать ИНТЕРФЕЙСА, а класс его расширяющий(дочерний) должен реализовать всё остальное.
+// Абстрактный класс может реализовать часть ИНТЕРФЕЙСА, а класс его расширяющий(дочерний) должен реализовать всё остальное.
 
 echo "<br>";
 
-// Анонимный класс
+// Анонимный класс - способ создания класса без явного указания имени.
+// Они удобны когда нужно создать класс для одного конкретного случая (использования).
 $beast = new class{
     public function howl(){
         echo "AUUUU";
@@ -193,6 +205,31 @@ $beast = new class{
 $beast->howl();
 
 echo "<br>";
+// В данном примере наша анонимная функция является возвращаемым значением функции getInfo()
+class Planet {
+    protected $number;
+    private $color;
+
+    function setInfo($number, $color){
+        $this -> number = $number;
+        $this -> color = $color;
+    }
+
+    function getInfo(){
+        return new class($this->number, $this->color) extends Planet{
+
+            function __construct($current_number, $current_color)
+            {
+                echo "Planet number : $current_number <br>";
+                echo "Planet color : $current_color <br>";
+            }
+        };
+    }
+}
+
+$curPlanet = new Planet;
+$curPlanet -> setInfo("4", "Red"); // Устанавливаем значения переменных number и color
+$curPlanet -> getInfo(); // Вызываем функцию getInfo где возвращаемое значение это анонимный класс, который расширяет главный гласс и вызывается construct где и происходит вывод
 
 
 ?>
