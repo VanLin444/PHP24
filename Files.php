@@ -4,6 +4,6 @@ spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
 
-$obj  = new Ninja1("Naruto");
+$obj  = new Ninja1("Sakura");
 $obj->getName();
 ?>
