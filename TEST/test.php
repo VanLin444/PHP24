@@ -7,25 +7,4 @@ echo "<br>";
 
 echo 13 === "13";
 */
-
-interface voice {
-    public function giveVoice();
-    public function getName();
-}
-
-abstract class wolf implements voice{
-    function giveVoice(){
-        print("I do Aoouu. I'm " . __CLASS__ . "<br>");
-    }
-}
-
-class dog extends wolf {
-    function getName(){
-        parent::giveVoice();
-        print("I'm " . __CLASS__ . " and i do GAV GAV <br>");
-    }
-}
-
-$beast = new dog();
-$beast->getName();
 ?>
