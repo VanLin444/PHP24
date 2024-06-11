@@ -6,33 +6,24 @@
 <body>
 
 <?php
-// Перегрузка - это возможность создания методов или функций с одинаковым именем, но разными параметрами.
-// Таким образом, в зависимости от переданных аргументов, будет вызываться соответствующая версия метода.
-// final не даст перегрузить метод
+// Перегрузка в PHP означает возможность динамически "создавать" свойства и методы. 
+// Эти динамические сущности обрабатываются с помощью "волшебных" методов, которые можно создать в классе для различных видов действий.
 
-class Press {
-    public function press(){
-        echo "Press F";
+class Teleport {
+    private $data = [];
+    
+    public function __set($new_coordinate, $value){
+        $this -> data[$new_coordinate] = $value;
+    }
+
+    public function __get($name){
+        return $this -> data[$name];
     }
 }
 
-class PressKey extends Press{
-    protected $word;
-
-    function __construct($word){
-        $this->word = $word;
-    }
-
-    // перегрузили метод press
-    function press(){
-        echo "Press $this->word <br>";
-    }
-}
-
-$clack = new PressKey("ENTER");
-$clack->press();
-
-
+$position = new Teleport;
+$position -> new_coordinate = [1, 1, 1];
+print_r($position -> new_coordinate);
 ?>
 
 </body>
