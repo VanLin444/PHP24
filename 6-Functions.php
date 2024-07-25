@@ -7,10 +7,12 @@
 
 <?php
 // Простая функция
-function getName($name, $secondName = "Antipov"){
-    echo "Привет $name !";
+// Type Hinting — это механизм, который позволяет явно указывать типы параметров.
+// после закрывающей скобки () : указывается тип возвращаемого значения функции
+function getName(string $name, $secondName = "Antipov") : string {
+    return "Привет $name !";
 }
-getName("Ivan");
+echo getName("Ivan");
 
 echo "<br>";
 

@@ -7,12 +7,54 @@ echo "<br>";
 
 echo 13 === "13";
 */
-class art {
-    public function sum ($per1, $per2) {
-        return $per1 + $per2;
+/*
+trait A {
+    public function smallTalk() {
+        echo 'a';
     }
-    public function sum ($per1, $per2, $per3) {
-        return $per1 + $per2 + $per3;
+    public function bigTalk() {
+        echo 'A';
     }
 }
+
+trait B {
+    public function smallTalk() {
+        echo 'b';
+    }
+    public function bigTalk() {
+        echo 'B';
+    }
+}
+
+class Talker {
+    use A, B {
+        B::smallTalk insteadof A;
+        A::bigTalk insteadof B;
+    }
+}
+
+class Aliased_Talker {
+    use A, B {
+        B::smallTalk insteadof A;
+        A::bigTalk insteadof B;
+        B::bigTalk as talk;
+    }
+}
+
+$obj = new Talker;
+$obj ->smallTalk();
+$obj ->bigTalk();
+*/
+
+$connect = mysqli_connect('localhost','root','root','films','8889');
+if (!$connect){
+    die("Ошибка подключения к БД...<br>");
+}
+echo "Connected to DataBase<br>";
+
+$films = mysqli_query($connect, "SELECT * FROM `films`");
+$films = mysqli_fetch_all($films);
+echo '<pre>';
+print_r($films);
+echo '</pre>';
 ?>

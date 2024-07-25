@@ -80,6 +80,44 @@ class electrosamokat extends samokat {
 $user = new electrosamokat(); // При создании объекта вызывается родительский метод
 $user->callTrait(10); // Вызываем метод трейта
 //$user->drive(15); // Вызываем переопределённый метод из текущего класса
+
+echo "<br>";
+
+// Несколько трейтов 
+// Разрешение конфликтов при использовании нескольких трейтов в которых есть методы с одним и тем же именем
+// с помощью оператора inteadof и оператора as для включения конфликтующего метода под другим именем.
+trait Shinobi {
+    function Attack() {
+        echo "Shinibi attack <br>";
+    }
+
+    function Defense() {
+        echo "Shinobi defense <br>";
+    }
+}
+
+trait Civilian {
+    function Attack() {
+        echo "Civilian attack <br>";
+    }
+
+    function Defense() {
+        echo "Civilian defense <br>";
+    }
+}
+
+class NPC {
+    use Shinobi, Civilian {
+        Shinobi::Defense insteadOf Civilian;
+        Civilian::Attack insteadOf Shinobi;
+        Shinobi::Attack as highdamage;
+    }
+}
+
+$obj = new NPC;
+$obj -> Defense();
+$obj -> Attack();
+$obj -> highdamage();
 ?>
 
 </body>
