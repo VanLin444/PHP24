@@ -46,15 +46,4 @@ $obj ->smallTalk();
 $obj ->bigTalk();
 */
 
-$connect = mysqli_connect('localhost','root','root','films','8889');
-if (!$connect){
-    die("Ошибка подключения к БД...<br>");
-}
-echo "Connected to DataBase<br>";
-
-$films = mysqli_query($connect, "SELECT * FROM `films`");
-$films = mysqli_fetch_all($films);
-echo '<pre>';
-print_r($films);
-echo '</pre>';
 ?>
