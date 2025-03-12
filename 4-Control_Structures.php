@@ -16,7 +16,7 @@ $familyMember = "Itachi";
 if ($familyMember == "Fugaku"){
     echo "It's his father <br>";
 } elseif ($familyMember == "Mikoto"){
-    echo "It's hit mother <br>";
+    echo "It's his mother <br>";
 } elseif ($familyMember == "Itachi"){
     echo "It's his BROTHER...<br>";
 } else {
