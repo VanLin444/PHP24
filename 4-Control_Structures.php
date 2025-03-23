@@ -1,5 +1,8 @@
 <?php
-
+/*
+    Условные конструкции в PHP — это инструменты, которые позволяют выполнять определённые блоки кода в зависимости от условий. 
+    Они помогают программе принимать решения на основе данных или состояния.
+*/
 $childName = "Boruto";
 if ($childName != "Himavari"){
     echo "Himavaru top, Boruto RETARD! <br>";
@@ -23,7 +26,7 @@ if ($familyMember == "Fugaku"){
     echo "I don't know who is it...";
 }
 
-// Альтернативный систаксис управляющих структур
+// Альтернативный синтаксис управляющих структур
 $skill = "Rasengan";
 if ($skill != "Chidori"):
     echo "HIGH Skill <br>";

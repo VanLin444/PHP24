@@ -118,22 +118,23 @@ Class User{
 
     public function getInfo(){
         print("Hello I'm $this->name $this->secondName and I'm $this->age years old! <br>");
+        $this->getPrivate();
     }
 
     protected function getProtected() {
-        echo "Функция protected";
+        echo "Функция protected ";
     }
 
     private function getPrivate(){
-        echo "Функция private";
+        echo "Функция private ";
     }
 }
 
 // Мы можем переопределить общедоступные и защищённые свойства, но не закрытые
     // Мы можем вызвать функцию с областью видимости protected т.к
-    // Класс MyInfo2 является дочерним классом MyInfo
+    // Класс MyInfo является дочерним классом User
     // Но мы не можем вызвать функцию области видимости private т.к
-    // Она является часть родительского класса MyInfo и не наследуется!
+    // Она является частью родительского класса User и не наследуется!
 class MyInfo extends User{ 
     protected $weight = 107;
 
@@ -205,7 +206,7 @@ $beast = new class{
 $beast->howl();
 
 echo "<br>";
-// В данном примере наша анонимная функция является возвращаемым значением функции getInfo()
+// В данном примере наш анонимный класс является возвращаемым значением функции getInfo()
 class Planet {
     protected $number;
     private $color;
@@ -229,7 +230,7 @@ class Planet {
 
 $curPlanet = new Planet;
 $curPlanet -> setInfo("4", "Red"); // Устанавливаем значения переменных number и color
-$curPlanet -> getInfo(); // Вызываем функцию getInfo где возвращаемое значение это анонимный класс, который расширяет главный гласс и вызывается construct где и происходит вывод
+$curPlanet -> getInfo(); // Вызываем функцию getInfo где возвращаемое значение это анонимный класс, который расширяет главный класс и вызывается construct где и происходит вывод
 
 
 // Клонирование объекта
