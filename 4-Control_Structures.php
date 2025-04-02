@@ -4,23 +4,23 @@
     Они помогают программе принимать решения на основе данных или состояния.
 */
 $childName = "Boruto";
-if ($childName != "Himavari"){
+if ($childName != "Himavari") {
     echo "Himavaru top, Boruto RETARD! <br>";
 }
 
 $name = "Hinata";
-if ($name == "Sakura"){
+if ($name == "Sakura") {
     echo "$name stupid <br>";
-} else{
+} else {
     echo "$name top waifu! <br>";
 }
 
 $familyMember = "Itachi";
-if ($familyMember == "Fugaku"){
+if ($familyMember == "Fugaku") {
     echo "It's his father <br>";
-} elseif ($familyMember == "Mikoto"){
+} elseif ($familyMember == "Mikoto") {
     echo "It's his mother <br>";
-} elseif ($familyMember == "Itachi"){
+} elseif ($familyMember == "Itachi") {
     echo "It's his BROTHER...<br>";
 } else {
     echo "I don't know who is it...";
@@ -44,7 +44,7 @@ echo ($tails > 8 and $tails < 10) ? "Kurama <br>" : "I don't know who is it...<b
 // Оператор switch похож на ряд операторов IF с одинаковым условием. 
 $hokageName = "Minato Namikaze";
 
-switch ($hokageName){
+switch ($hokageName) {
     case "Hashirama Senju":
         echo "First Hokage";
         break;
@@ -59,19 +59,24 @@ switch ($hokageName){
         break;
 
     default:
-    echo "Unknown Hokage";
+        echo "Unknown Hokage";
 }
 
 echo "<br>";
 
 // В отличие от switch, в match(выражение) используется строгое сравнение (===), а не слабое (==).
 $family = "Uzumaki";
-$name = match ($family){
+$name = match ($family) {
     "Uchiha" => "Sasuke",
     "Senju" => "Tsunade",
     "Uzumaki" => "Karin",
     "Uzumaki" => "Naruto",
     default => "Unknown"
 };
-echo "Uzumaki number one - " . $name;
-?>
+echo "Uzumaki number one - " . $name . '<br>';
+
+// Оператор объединения с null - это оператор, который возвращает первый операнд, 
+// если он существует и не равен null, в противном случае — второй операнд.
+// $Var = $операнд1 ?? $операнд2;
+$var = $varnull ?? 'Не существует или равен null';
+echo $var;
