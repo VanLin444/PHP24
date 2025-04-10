@@ -24,6 +24,6 @@
         ?>
     </form>
     <!-- Для удаления куки его нужо повторно установить с настройкой уже истёкшей даты. В данном случае на месяц назад т.к у пользователя может быть неправильное время -->
-    <button><?php setcookie('location', $_COOKIE['location'], time() - 259000);?> Удалить COOKIE</button>
+    <button><?php setcookie('location', $_COOKIE['location'], time() - 259000,  "/");?> Удалить COOKIE</button>
 </body>
 </html>
