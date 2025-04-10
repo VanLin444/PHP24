@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="output.php" method="POST">
+    <form action="output.php" method="POST" enctype="multipart/form-data">
         <div style="display: grid; justify-items: start;">
             <label for="txta">TEXT AREA - ТЕКСТОВАЯ ОБЛАСТЬ</label>
             <textarea name="txta" id="" cols="60px" rows="5px" wrap=""></textarea>
@@ -25,6 +25,7 @@
             <input type="checkbox" name="chkbx[]" value=4>
             <p>Шоколадное</p>
         </div>
+        <br>
         <label for="radio">RADIO BUTTONS - ПЕРЕКЛЮЧАТЕЛИ</label>
         <div style="display:flex;">
             <p>ON</p><input type="radio" name="radio" id="" value="1" checked="checked">
@@ -40,6 +41,11 @@
                 <option value="Германия">Германия</option>
             </select>
         </div>
+        <br>
+        <div>
+            <input type="file" name="upload_file" id="">
+        </div>
+        <br>
         <input type="submit">
     </form>
 </body>
