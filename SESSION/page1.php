@@ -52,7 +52,7 @@
     <?php 
     // Обработка формы с именем
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-        $_SESSION['name'] = $_POST['name'];
+        $_SESSION['name'] = htmlspecialchars($_POST['name']);
         header("Location: page1.php");
         exit;
     }
