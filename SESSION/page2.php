@@ -1,12 +1,14 @@
 <?php 
     session_start();
 
+    // Очистка заказа
     if(isset($_GET['clear'])){
         $_SESSION['cart'] = [];
         header("Location: page2.php");
         exit;
     }
 
+    // Удалени отдельных позиций заказа
     if(isset($_GET['remove'])){
        $index = (int) $_GET['remove'];
        if(isset($_SESSION['cart'][$index])){

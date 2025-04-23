@@ -7,6 +7,7 @@
         $_SESSION['cart'] = [];
     }
 
+    // Добавление в заказ выбранной позиции и сообщение об этом
     if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['item'])){
         $_SESSION['cart'][] = $_POST['item'];
         $message = "Добавлено в корзину : " . htmlspecialchars($_POST['item']);
@@ -22,10 +23,12 @@
 <body>
     <h1>Добро пожаловать в наше кафе, <?= $_SESSION['name'] ?? 'Гость' ?>!</h1>
 
+    <!-- Вывод на экран при добавлении позиции в заказ -->
     <?php if(isset($message)): ?>
         <p style="color:green;"><?php echo $message; ?></p>
     <?php endif; ?>
     <h2>Меню :</h2>
+    <!-- Форма добавления позиций в заказ -->
     <form action="" method="POST">
         <select name="item" id="">
             <option value="Кофе">Кофе - 75 р.</option>
@@ -38,6 +41,7 @@
     <div style="margin-top: 20px">
         <a href="page2.php" style="color: red;">Мой заказ</a>
     </div>
+    <!-- Ввод имени если его ещё не ввели -->
     <?php if(!isset($_SESSION['name'])):?>
         <form action="page1.php" method="POST">
             <h3>Представьтесь : </h3>
@@ -48,7 +52,7 @@
     <?php 
     // Обработка формы с именем
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-        $_SESSION['name'] = htmlspecialchars($_POST['name']);
+        $_SESSION['name'] = $_POST['name'];
         header("Location: page1.php");
         exit;
     }
