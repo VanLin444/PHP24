@@ -8,15 +8,15 @@
         exit;
     }
 
-    // Удалени отдельных позиций заказа
+    // Удаление отдельных позиций заказа
     if(isset($_GET['remove'])){
-       $index = (int) $_GET['remove'];
-       if(isset($_SESSION['cart'][$index])){
+        $index = (int) $_GET['remove'];
+        if(isset($_SESSION['cart'][$index])){
         unset($_SESSION['cart'][$index]);
         $_SESSION['cart'] = array_values($_SESSION['cart']);
-       }
-       header("Location: page2.php");
-       exit;
+    }
+        header("Location: page2.php");
+        exit;
     }
 ?>
 <!DOCTYPE html>

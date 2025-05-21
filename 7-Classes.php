@@ -145,7 +145,7 @@ class MyInfo extends User{
 }
 
 // Напрямую мы не можем вызвать функции с областью видимости private и protected
-// Но мы можем это сделать через фуекцию с областью видимости public
+// Но мы можем это сделать через функцию с областью видимости public
 $meInfo = new MyInfo;
 $meInfo->getInfo();
 $meInfo->callFunction();

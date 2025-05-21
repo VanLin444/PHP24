@@ -47,6 +47,8 @@ echo __LINE__;
 echo '<br>';
 echo __FILE__;
 echo '<br>';
+echo __DIR__;
+echo '<br>';
 
 function kageBunshin(){
     echo __FUNCTION__;

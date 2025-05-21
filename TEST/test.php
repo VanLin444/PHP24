@@ -47,7 +47,7 @@ $obj ->bigTalk();
 */
 
 
-// Reverse string
+/* // Reverse string
 $str = "abrakadabra";
 
 function rev($word){
@@ -59,5 +59,54 @@ function rev($word){
     }
     return $res;
 }
-echo rev($str);
+echo rev($str); */
+
+/* // Проверка является ли число степень числа 2 
+function checkTwoPow($x){
+    while(true){
+        if ($x == 1){
+            return true;
+        }
+        if($x % 2 == 0){
+            $x= $x / 2;
+        } else {
+            return false;
+        }
+    }
+}
+var_dump(checkTwoPow(2048));
+
+var_dump(true || false && false); */
+
+/* // Удаление повторяющегося элемента в массиве и вывод значений отличающихся от него
+$nums = [1,5,6,9,2,5,3];
+$val = 5;
+function removeElement(&$nums, $val) {
+    foreach ($nums as $ind => $el){
+        if($el == $val){
+            unset($nums[$ind]);
+        }
+    }
+    return count($nums);
+} */
+
+// Доступ к защищённым методам класса через публичные
+abstract class Animals {
+    abstract protected function say();
+}
+
+class Tiger extends Animals {
+    protected function say() {
+        echo "Graa";
+    }
+}
+
+class Cat extends Tiger {
+    public function checkSay() {
+        $this->say();
+    }
+}
+
+$animal = new Cat();
+$animal->checkSay();
 ?>
