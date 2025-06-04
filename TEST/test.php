@@ -60,4 +60,5 @@ function rev($word){
     return $res;
 }
 echo rev($str);
+echo rev($str);
 ?>
