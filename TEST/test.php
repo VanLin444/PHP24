@@ -59,6 +59,7 @@ function rev($word){
     }
     return $res;
 }
+<<<<<<< HEAD
 echo rev($str); */
 
 /* // Проверка является ли число степень числа 2 
@@ -109,4 +110,8 @@ class Cat extends Tiger {
 
 $animal = new Cat();
 $animal->checkSay();
+=======
+echo rev($str);
+echo rev($str);
+>>>>>>> 2e58018dfdcdd4cdf2ddf85658f289cd1563ce59
 ?>
