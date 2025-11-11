@@ -1,6 +1,3 @@
-<?php 
-//require 'jwt.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
