@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
     if ($username === $username && $password === $password) {
         $_POST['jwt'] = generateToken($secretKey, $tokenLifeTime);
         echo <<<HTML
-        <form action='response.php' method='POST'>
+        <form action='checkToken.php' method='POST'>
             <h2>✅ Добро пожаловать, {$_POST['username']}!</h2>
             <p>Ваш JWT токен (срок 2 мин):</p>
             <textarea name='token' style='width:325px;height:100px;'>{$_POST['jwt']}</textarea>
