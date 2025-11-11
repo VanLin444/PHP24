@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use Firebase\JWT\JWT;
-use Firebase\JWT\KEY;
+use Firebase\JWT\Key;
 
 function verifyToken(string $jwt, $secretKey)
 {

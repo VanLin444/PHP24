@@ -1,8 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-
 use Firebase\JWT\JWT;
-use Firebase\JWT\KEY;
 
 $secretKey = "abracadabra";
 $tokenLifeTime = 60;
@@ -35,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
         echo <<<HTML
         <form action='checkToken.php' method='POST'>
             <h2>✅ Добро пожаловать, {$_POST['username']}!</h2>
-            <p>Ваш JWT токен (срок 2 мин):</p>
+            <p>Ваш JWT токен (срок 60 сек):</p>
             <textarea name='token' style='width:325px;height:100px;'>{$_POST['jwt']}</textarea>
             <textarea name='key' style='display:none'>{$secretKey}</textarea>
             <br>
